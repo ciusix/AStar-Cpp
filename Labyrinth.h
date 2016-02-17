@@ -7,6 +7,9 @@
 
 #include "Cell.h"
 
+#define NORM_COST 10
+#define DIAG_COST 14
+
 class Labyrinth {
 
     private:
@@ -29,7 +32,11 @@ class Labyrinth {
         int getEndY();
         
         void printLabyrinth();
+        void printLabyrinthSolution();
         void calculateHeuristics();
+        
+        int getNormCost();
+        int getDiagCost();
 };
 
 #endif

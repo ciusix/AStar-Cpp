@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -static-libgcc -static-libstdc++
+CFLAGS = -DDEBUG -Wall -static-libgcc -static-libstdc++
 
 default: astar
 
