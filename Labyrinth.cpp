@@ -20,127 +20,14 @@ Cell* Labyrinth::getCell(int x, int y) {
 }
 
 void Labyrinth::calculateHeuristics() {
+    int diag, norm;
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            int diag = abs(x - endX) < abs(y - endY) ? abs(x - endX) : abs(y - endY);
-            int norm = (abs(x - endX) + abs(y - endY) - 2 * diag);
+            diag = abs(x - endX) < abs(y - endY) ? abs(x - endX) : abs(y - endY);
+            norm = abs(x - endX) + abs(y - endY) - 2 * diag;
             getCell(x, y)->setH(diag * DIAG_COST + norm * NORM_COST);
         }
     }
-}
-
-void Labyrinth::printLabyrinth() {
-    Cell* cell;
-    
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            std::cout << "+-------";
-        }
-        std::cout << "+" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            if (x == startX && y == startY) {
-                printf("| START ");
-            } else if (x == endX && y == endY) {
-                printf("| END   ");
-            } else if (cell->isWall()) {
-                printf("| WALL  ");
-            } else {
-                printf("|       ");
-            }
-        }
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            printf("| H=%3d ", cell->getH());
-        }
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            printf("| G=%3d ", cell->getG());
-        }
-
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            printf("| F=%3d ", cell->getF());
-        }
-
-        std::cout << "|" << std::endl;
-    }
-    
-    for (int x = 0; x < width; x++) {
-        std::cout << "+-------";
-    }
-    std::cout << "+" << std::endl;
-}
-
-void Labyrinth::printLabyrinthSolution() {
-    Cell* cell;
-    
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            std::cout << "+-------";
-        }
-        std::cout << "+" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            if (x == startX && y == startY) {
-                printf("| START ");
-            } else if (x == endX && y == endY) {
-                printf("| END   ");
-            } else if (cell->isWall()) {
-                printf("| WALL  ");
-            } else {
-                printf("|       ");
-            }
-        }
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            if (cell->isInSolution()) {
-                printf("| H=%3d ", cell->getH());
-            } else {
-                printf("|       ");
-            }
-        }
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            if (cell->isInSolution()) {
-                printf("| G=%3d ", cell->getG());
-            } else {
-                printf("|       ");
-            }
-        }
-
-        std::cout << "|" << std::endl;
-        
-        for (int x = 0; x < width; x++) {
-            cell = getCell(x, y);
-            if (cell->isInSolution()) {
-                printf("| F=%3d ", cell->getF());
-            } else {
-                printf("|       ");
-            }
-        }
-
-        std::cout << "|" << std::endl;
-    }
-    
-    for (int x = 0; x < width; x++) {
-        std::cout << "+-------";
-    }
-    std::cout << "+" << std::endl;
 }
 
 void Labyrinth::setStartX(int startX) {
@@ -182,3 +69,12 @@ int Labyrinth::getNormCost() {
 int Labyrinth::getDiagCost() {
     return DIAG_COST;
 }
+
+int Labyrinth::getWidth() {
+    return width;
+}
+
+int Labyrinth::getHeight() {
+    return height;
+}
+

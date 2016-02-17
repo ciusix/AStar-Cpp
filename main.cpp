@@ -1,12 +1,13 @@
 #include "Labyrinth.h" 
 #include "Solver.h"
+#include "UIManager.h"
 
 Labyrinth* simpleLabyrinth();
 
 int main (int argc, char *argv[]) {
     Labyrinth* labyrinth = simpleLabyrinth();
     
-    labyrinth->printLabyrinth();
+    // UIManager::get()->printLabyrinth(labyrinth, false);
     Solver* solver = new Solver(labyrinth);
     
     solver->solve();

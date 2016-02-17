@@ -6,9 +6,9 @@ default: astar
 build: clean astar
 
 astar:  Solver.o
-	$(CC) $(CFLAGS) -o astar main.cpp Solver.o Cell.o Labyrinth.o
+	$(CC) $(CFLAGS) -o astar main.cpp Solver.o Cell.o Labyrinth.o UIManager.o
 
-Solver.o:  Solver.cpp Solver.h Cell.o Labyrinth.o
+Solver.o:  Solver.cpp Solver.h Cell.o Labyrinth.o UIManager.o
 	$(CC) $(CFLAGS) -c Solver.cpp
 
 Cell.o: Cell.cpp Cell.h
@@ -16,6 +16,9 @@ Cell.o: Cell.cpp Cell.h
 	
 Labyrinth.o:  Labyrinth.cpp Labyrinth.h Cell.o
 	$(CC) $(CFLAGS) -c Labyrinth.cpp
+    
+UIManager.o: UIManager.cpp UIManager.h
+	$(CC) $(CFLAGS) -c UIManager.cpp
     	
 clean:
 ifeq ($(OS),Windows_NT)

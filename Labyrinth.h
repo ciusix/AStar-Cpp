@@ -30,13 +30,11 @@ class Labyrinth {
         int getEndX();
         void setEndY(int);
         int getEndY();
-        
-        void printLabyrinth();
-        void printLabyrinthSolution();
         void calculateHeuristics();
-        
         int getNormCost();
         int getDiagCost();
+        int getWidth();
+        int getHeight();
 };
 
 #endif

@@ -9,19 +9,19 @@
 #include <algorithm>
 
 #include "Labyrinth.h"
+#include "UIManager.h"
 
 class Solver {
 
     private:
         Labyrinth* labyrinth;
         std::vector<Cell*> openList, closedList;
-        void printList(std::vector<Cell*>*, std::string);
-        void addCellToOpenList(Cell*);
-        void removeCellFromOpenList(Cell*);
-        void addCellToClosedList(Cell*);
+        std::vector<Cell*> solution;
+
         Cell* findCellWithLowestFInOpenList();
         bool cellInList(Cell*, std::vector<Cell*>*);
-        void printPathFrom(Cell*);        
+        void makePathFrom(Cell*);
+        std::vector<Cell*> getSolution();
         
     public:
         Solver(Labyrinth*);
