@@ -8,12 +8,12 @@ Labyrinth::Labyrinth(int width, int height){
 }
 
 void Labyrinth::addCell(int x, int y, Cell* cell) {
-    cells[y * height + x] = cell;
+    cells[y * width + x] = cell;
 }
 
 Cell* Labyrinth::getCell(int x, int y) {
     if (x >= 0 && y >= 0 && x < width && y < height) {
-        return cells[y * height + x];
+        return cells[y * width + x];
     } else {
         return NULL;
     }
@@ -23,8 +23,8 @@ void Labyrinth::calculateHeuristics() {
     int diag, norm;
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            diag = abs(x - endX) < abs(y - endY) ? abs(x - endX) : abs(y - endY);
-            norm = abs(x - endX) + abs(y - endY) - 2 * diag;
+            diag = (abs(x - endX) < abs(y - endY) ? abs(x - endX) : abs(y - endY));
+            norm = (abs(x - endX) < abs(y - endY) ? abs(y - endY) : abs(x - endX));
             getCell(x, y)->setH(diag * DIAG_COST + norm * NORM_COST);
         }
     }

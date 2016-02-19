@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <string>
 
 #include "Labyrinth.h"
 
@@ -18,11 +19,12 @@ class FileReader {
     
         static FileReader* self;
     
-    char readChar(std::ifstream* file, char*);
+        char readChar(std::ifstream* file, char*);
+        void processChar(char, std::vector<std::vector<char> >*);
     public:
         static FileReader* get();
     
-        Labyrinth* getLabyrinth();
+        Labyrinth* getLabyrinth(std::string);
     
 };
 
